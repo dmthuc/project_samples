@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package Message;
+
+message Message {
+  enum Mesage_type {
+    REQ = 0;
+    REP = 1;
+  }
+
+  optional Mesage_type type = 1;
+  optional string content = 2;
+}
+
