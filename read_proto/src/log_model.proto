@@ -1,0 +1,12 @@
+syntax = "proto2";
+package Database;
+
+import "common.proto";
+
+message LogMeta
+{
+  required string log_name = 1;
+  required string type = 2;
+  required uint64 min_lsn = 3;
+  required HostAndPorts host_ports = 4;
+}

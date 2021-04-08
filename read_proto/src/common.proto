@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package Database;
+
+message HostAndPorts
+{
+  required string hostname = 1;
+  required string host = 2;
+  required uint32 rpc_port = 3;
+  required uint32 tcp_port = 4;
+}
