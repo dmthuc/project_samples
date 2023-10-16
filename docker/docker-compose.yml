@@ -4,8 +4,6 @@ services:
         image: minhthucdao1/test
         command: /bin/sh -c "/dao_wp/run_from_bind_mount.sh"
         volumes:
-          - type: bind
-            source: ${HOST_BINARY_DIR}
-            target: /dao_wp/ 
+          - shared_data:/dao_wp/
 
 
