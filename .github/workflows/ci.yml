@@ -27,6 +27,7 @@ jobs:
   clean_up:
     name: Clean up
     needs: run_test 
+    if: always()
     runs-on: ubuntu-20.04
     steps:
       - name: Clean up docker volume
