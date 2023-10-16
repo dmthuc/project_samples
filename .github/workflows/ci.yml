@@ -16,9 +16,13 @@ jobs:
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
+        - name: Prepare Env
+          run: |
+            echo "SHARED_DATA=shared_data" >> $GITHUB_ENV
         - name: Run test
           run: |
             cp docker/run_from_bind_mount.sh /share_data/
+            printf '%s\n' "$SHARED_DATA"
             docker-compose -f docker/docker-compose.yml up
  
 
