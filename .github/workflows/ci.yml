@@ -6,9 +6,10 @@ on:
     branches: [ "master" ]
 
 jobs:
-  test:
+  run_test:
+    name: Run test
     steps:
         - name : Run test
-        run: echo "finish"
+          run: echo "finish"
  
 
