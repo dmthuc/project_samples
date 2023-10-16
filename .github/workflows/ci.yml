@@ -24,5 +24,14 @@ jobs:
             cp docker/run_from_bind_mount.sh /share_data/
             printf '%s\n' "$SHARED_DATA"
             docker-compose -f docker/docker-compose.yml up
+  clean_up:
+    name: Clean up
+    needs: run_test 
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clean up docker volume
+        run: |
+            docker volume prune -f
+
  
 
