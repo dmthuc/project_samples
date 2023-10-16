@@ -8,6 +8,7 @@ on:
 jobs:
   run_test:
     name: Run test
+    runs-on: ubuntu-20.04
     steps:
         - name : Run test
           run: echo "finish"
