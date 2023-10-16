@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
         - name : Run test
-          run: echo "finish"
+          run: docker-compose -f ../../docker/docker-compose.yml up
  
 
