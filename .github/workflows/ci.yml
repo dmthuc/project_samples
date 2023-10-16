@@ -12,7 +12,12 @@ jobs:
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
-        - name : Run test
-          run: docker-compose -f docker/docker-compose.yml up
+        - name: Prepare Env
+          run: |
+            echo "HOST_BINARY_DIR=docker/" >> $GITHUB_ENV
+        - name: Run test
+          run: |
+            printf '%s\n' "$HOST_BINARY_DIR"
+            docker-compose -f docker/docker-compose.yml up
  
 

@@ -2,5 +2,10 @@ version: "3"
 services:
     test_service:
         image: minhthucdao1/test
-        command: /bin/sh -c "/dao_wp/run.sh"
+        command: /bin/sh -c "/dao_wp/run_from_bind_mount.sh"
+        volumes:
+          - type: bind
+            source: ${HOST_BINARY_DIR}
+            target: /dao_wp/ 
+
 
