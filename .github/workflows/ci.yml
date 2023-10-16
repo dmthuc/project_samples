@@ -9,7 +9,7 @@ jobs:
   run_test:
     name: Run test
     runs-on: ubuntu-20.04
-    container: docker/compose
+    container: docker/compose:debian-1.29.2
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
