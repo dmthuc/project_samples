@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
 
 env:
-  VOLUME_NAME: &VOLUME_NAME ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  VOLUME_NAME: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 jobs:
   run_test:
     name: Run test
@@ -14,7 +14,7 @@ jobs:
     container: 
         image: docker/compose:debian-1.29.2
         volumes: 
-            *VOLUME_NAME:/share_data  
+            - {'name': '${VOLUME_NAME}', 'value': '/share_data'}
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
