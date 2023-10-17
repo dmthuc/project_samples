@@ -14,13 +14,13 @@ jobs:
     container: 
         image: docker/compose:debian-1.29.2
         volumes: 
-            - shared_data:/share_data  
+            - ${VOLUME_NAME}:/share_data  
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
         - name: Prepare Env
           run: |
-            echo "SHARED_DATA=shared_data" >> $GITHUB_ENV
+            echo "SHARED_DATA=${VOLUME_NAME}" >> $GITHUB_ENV
         - name: Run test
           run: |
             cp docker/run_from_bind_mount.sh /share_data/
