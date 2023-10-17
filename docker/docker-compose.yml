@@ -7,7 +7,7 @@ services:
           - shared_data:/dao_wp/
 volumes:
     shared_data:
-      name: "${SHARED_DATA}"
+      name: "${VOLUME_NAME}"
 
 
 

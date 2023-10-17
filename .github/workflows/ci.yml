@@ -16,14 +16,15 @@ jobs:
           uses: actions/checkout@v3
         - name: Prepare Env
           run: |
-            echo "SHARED_DATA=${VOLUME_NAME}" >> $GITHUB_ENV
+            echo "TEST_VAR=some_var" >> $GITHUB_ENV
         - name: Prepare Data
           run: |
+            docker container create --name dummy -v ${VOLUME_NAME}:/share_data hello-world 
         - name: Run test
           run: |
             cp docker/run_from_bind_mount.sh /share_data/
             printf '%s\n' "$VOLUME_NAME"
-            printf '%s\n' "$SHARED_DATA"
+            printf '%s\n' "$TEST_VAR"
             ./docker/test_export_variable.sh 
             docker-compose -f docker/docker-compose.yml up
   clean_up:

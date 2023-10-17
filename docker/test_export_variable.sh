@@ -1,2 +1,2 @@
 #!/bin/sh
-echo "${SHARED_DATA}"
+echo "${TEST_VAR}"
