@@ -20,9 +20,10 @@ jobs:
         - name: Prepare Data
           run: |
             docker container create --name dummy -v ${VOLUME_NAME}:/share_data minhthucdao1/test 
+            docker cp docker/run_from_bind_mount.sh dummy:/share_data/
+            docker rm dummy
         - name: Run test
           run: |
-            cp docker/run_from_bind_mount.sh /share_data/
             printf '%s\n' "$VOLUME_NAME"
             printf '%s\n' "$TEST_VAR"
             ./docker/test_export_variable.sh 
