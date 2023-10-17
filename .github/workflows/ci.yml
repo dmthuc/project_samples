@@ -19,7 +19,7 @@ jobs:
             echo "TEST_VAR=some_var" >> $GITHUB_ENV
         - name: Prepare Data
           run: |
-            docker container create --name dummy -v ${VOLUME_NAME}:/share_data hello-world 
+            docker container create --name dummy -v ${VOLUME_NAME}:/share_data minhthucdao1/test 
         - name: Run test
           run: |
             cp docker/run_from_bind_mount.sh /share_data/
