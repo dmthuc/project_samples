@@ -5,6 +5,8 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  VOLUME_NAME=${{ github.workflow }}
 jobs:
   run_test:
     name: Run test
@@ -22,6 +24,7 @@ jobs:
         - name: Run test
           run: |
             cp docker/run_from_bind_mount.sh /share_data/
+            printf '%s\n' "$VOLUME_NAME"
             printf '%s\n' "$SHARED_DATA"
             docker-compose -f docker/docker-compose.yml up
   clean_up:
