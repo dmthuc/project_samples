@@ -18,6 +18,7 @@ jobs:
           run: |
             export DATA=some_var
             echo "TEST_VAR=${DATA}" >> $GITHUB_ENV
+            printf 'TEST_VAR: %s\n' "$TEST_VAR"
         - name: Prepare Data
           run: |
             docker container create --name dummy -v ${VOLUME_NAME}:/share_data minhthucdao1/test 
