@@ -6,7 +6,7 @@ on:
     branches: [ "master" ]
 
 env:
-  VOLUME_NAME=${{ github.workflow }}
+  VOLUME_NAME: ${{ github.workflow }}
 jobs:
   run_test:
     name: Run test
