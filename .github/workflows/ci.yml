@@ -11,21 +11,20 @@ jobs:
   run_test:
     name: Run test
     runs-on: ubuntu-20.04
-    container: 
-        image: docker/compose:debian-1.29.2
-        volumes: 
-            - "${VOLUME_NAME}" 
     steps:
         - name: Check out repository code
           uses: actions/checkout@v3
         - name: Prepare Env
           run: |
             echo "SHARED_DATA=${VOLUME_NAME}" >> $GITHUB_ENV
+        - name: Prepare Data
+          run: |
         - name: Run test
           run: |
             cp docker/run_from_bind_mount.sh /share_data/
             printf '%s\n' "$VOLUME_NAME"
             printf '%s\n' "$SHARED_DATA"
+            ./docker/test_export_variable.sh 
             docker-compose -f docker/docker-compose.yml up
   clean_up:
     name: Clean up
