@@ -7,6 +7,6 @@ run:
 push:
 	docker push minhthucdao1/test
 test_volume1:
-	docker run --rm -it --mount 'type=volume,dst=/vol_path/' minhthucdao1/test /bin/sh
+	docker run --rm -it --mount 'type=volume,src=vol1,dst=/vol_path1/' minhthucdao1/test /bin/sh
 test_volume2:
-	docker run --rm -it --mount 'type=volume,dst=/vol_path/' minhthucdao1/test /bin/sh
+	docker run --rm -it --mount 'type=volume,src=vol1,dst=/vol_path/' minhthucdao1/test /bin/sh
