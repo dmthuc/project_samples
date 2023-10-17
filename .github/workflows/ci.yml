@@ -16,7 +16,8 @@ jobs:
           uses: actions/checkout@v3
         - name: Prepare Env
           run: |
-            echo "TEST_VAR=some_var" >> $GITHUB_ENV
+            export DATA=some_var
+            echo "TEST_VAR=${DATA}" >> $GITHUB_ENV
         - name: Prepare Data
           run: |
             docker container create --name dummy -v ${VOLUME_NAME}:/share_data minhthucdao1/test 
