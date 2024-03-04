@@ -2,7 +2,7 @@ name: Nightly test
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '17 11 * * *'
+    - cron: '22 3 * * *'
 
 env:
   VOLUME_NAME: volume-${{ github.run_id }}-${{ github.run_attempt }} 
