@@ -1,0 +1,43 @@
+name: Nightly test 
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '17 11 * * *'
+
+env:
+  VOLUME_NAME: volume-${{ github.run_id }}-${{ github.run_attempt }} 
+jobs:
+  run_test:
+    name: Run test
+    runs-on: ubuntu-20.04
+    steps:
+        - name: Check out repository code
+          uses: actions/checkout@v3
+        - name: Prepare Env
+          run: |
+            export DATA=some_var
+            echo "TEST_VAR=${DATA}" >> $GITHUB_ENV
+            printf 'TEST_VAR: %s\n' "$TEST_VAR"
+        - name: Check Env
+          run: |
+            printf 'TEST_VAR: %s\n' "$TEST_VAR"
+        - name: Prepare Data
+          run: |
+            docker container create --name dummy -v ${VOLUME_NAME}:/share_data minhthucdao1/test 
+            docker cp docker/run_from_bind_mount.sh dummy:/share_data/
+            docker rm dummy
+        - name: Run test
+          run: |
+            printf '%s\n' "$VOLUME_NAME"
+            printf '%s\n' "$TEST_VAR"
+            ./docker/test_export_variable.sh 
+            docker-compose -f docker/docker-compose.yml up
+  clean_up:
+    name: Clean up
+    needs: run_test 
+    if: always()
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clean up docker volume
+        run: |
+            docker volume prune -f
