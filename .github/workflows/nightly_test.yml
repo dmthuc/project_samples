@@ -2,7 +2,7 @@ name: Nightly test
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '31 * * * *'
+    - cron: '31 * * 8 *'
   workflow_dispatch:
 
 env:
